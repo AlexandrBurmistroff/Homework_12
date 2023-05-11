@@ -1,15 +1,13 @@
 package Homework_12;
 
 public class Author {
-    private String authorName;
+    private final String authorName;
 
-    private String authorSurname;
+    private final String authorSurname;
 
-    private Author createAuthor() {
-        Author author = new Author();
-        author.authorName = authorName;
-        author.authorSurname = authorSurname;
-        return author;
+    public Author(String authorName, String authorSurname) {
+        this.authorName = authorName;
+        this.authorSurname = authorSurname;
     }
 
     public String getAuthorName() {
@@ -18,5 +16,24 @@ public class Author {
 
     public String getAuthorSurname() {
         return this.authorSurname;
+    }
+
+    @Override
+    public String toString() {
+        return authorName + " " + authorSurname;
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (this.getClass() != other.getClass()) {
+            return false;
+        }
+        Author author = (Author) other;
+        return authorName.equals(author.authorName);
+    }
+
+    @Override
+    public int hashCode() {
+        return java.util.Objects.hash(authorName);
     }
 }

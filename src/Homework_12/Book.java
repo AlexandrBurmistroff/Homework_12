@@ -1,16 +1,16 @@
 package Homework_12;
 
+import java.util.Objects;
+
 public class Book {
-    private String bookName;
-    private Author bookAuthor;
+    private final String bookName;
+    private final Author bookAuthor;
     private int bookYear;
 
-    private Book createBook(String bookName, Author bookAuthor, int bookYear) {
-        Book book = new Book();
+    public Book(String bookName, Author bookAuthor, int bookYear) {
         this.bookName = bookName;
         this.bookAuthor = bookAuthor;
         this.bookYear = bookYear;
-        return book;
     }
 
     public String getBookName() {
@@ -28,5 +28,25 @@ public class Book {
     public int setBookYear(int bookYear) {
         this.bookYear = bookYear;
         return bookYear;
+    }
+
+    @Override
+    public String toString() {
+        return "Название книги: " + bookName + ", Автор: " + bookAuthor + ", Год издания: " + bookYear;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o)
+            return true;
+        if ((o == null) || getClass() != o.getClass())
+            return false;
+        Book book = (Book) o;
+        return Objects.equals(bookName, book.bookName);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(bookName);
     }
 }
